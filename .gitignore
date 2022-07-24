@@ -1,0 +1,8 @@
+vendor
+dist
+
+*.cert
+*.key
+*.srl
+
+.DS_Store
