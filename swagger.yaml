@@ -1,0 +1,53 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: "Trader"
+tags:
+- name: "stock"
+  description: "Everything about stock"
+schemes:
+- "http"
+paths:
+  /stock/order:
+    post:
+      tags:
+      - "stock"
+      summary: "Add a new stock trade"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/StockOrder"
+      responses:
+        "200":
+          description: "OK"
+        "400":
+          description: "Bad Request"
+        "500":
+          description: "Internal Error"
+definitions:
+  StockOrder:
+    type: object
+    properties:
+      tradeID:
+        type: string
+        description: "UUID gen by formula xxx (based on content and user info)"
+      stockID:
+        type: string
+        description: "Stock ID, e.g AAPL, refer docs: https://www.example.com"
+      "type":
+        type: integer
+        enum:
+          -	"0 (Sell by Limit Price)"
+          - "1 (Buy by Limit Price)"
+          - "2 (Sell by Market Price)"
+          - "3 (Buy by Market Price)"
+      quantity:
+        type: integer
+      price:
+        type: number
