@@ -10,3 +10,6 @@ clean:
 
 test:
 	go test ./...
+
+run: build
+	./dist/trader
